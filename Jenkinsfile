@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE = "umutcskn681/node"
-        VERSION = "1.${BUILD_NUMBER}" 
+        VERSION = "1.${BUILD_NUMBER}"
+        KUBECONFIG = '/home/test/.kube/config'
     }
     stages {
         stage('Build Docker Image') {
@@ -23,9 +24,11 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                sh "kubectl apply -f deployment.yaml"
-                sh "kubectl apply -f service.yaml"
-                sh "kubectl set image deployment/nodejs-hello-world nodejs-container=${DOCKER_IMAGE}:${VERSION}"
+                script {
+                    sh "kubectl --kubeconfig=${KUBECONFIG} apply -f deployment.yaml"
+                    sh "kubectl --kubeconfig=${KUBECONFIG} apply -f service.yaml"
+                    sh "kubectl --kubeconfig=${KUBECONFIG} set image deployment/nodejs-hello-world nodejs-container=${DOCKER_IMAGE}:${VERSION}"
+                }
             }
         }
     }
