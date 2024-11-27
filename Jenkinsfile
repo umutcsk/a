@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "umutcskn681/helloworldapp"
+        DOCKER_IMAGE = "umutcskn681/node"
         VERSION = "1.${BUILD_NUMBER}" 
     }
     stages {
