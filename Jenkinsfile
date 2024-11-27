@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                sh "docker login -u your-dockerhub-username -p Um.738770"
+                sh "docker login -u umutcskn681 -p Um.738770"
                 sh "docker push ${DOCKER_IMAGE}:${VERSION}"
             }
         }
