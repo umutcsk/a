@@ -20,9 +20,9 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh "kubectl --kubeconfig=${KUBECONFIG} apply -f deployment.yaml"
-                    sh "kubectl --kubeconfig=${KUBECONFIG} apply -f service.yaml"
-                    sh "kubectl --kubeconfig=${KUBECONFIG} set image deployment/nodejs-hello-world nodejs-container=${DOCKER_IMAGE}:${VERSION}"
+                    sh "export KUBECONFIG=${KUBECONFIG} && kubectl apply -f deployment.yaml"
+                    sh "export KUBECONFIG=${KUBECONFIG} && kubectl apply -f service.yaml"
+                    sh "export KUBECONFIG=${KUBECONFIG} && kubectl set image deployment/nodejs-hello-world nodejs-container=${DOCKER_IMAGE}:${VERSION}"
                 }
             }
         }
