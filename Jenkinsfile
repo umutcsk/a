@@ -17,10 +17,7 @@ pipeline {
                 sh "docker push ${DOCKER_IMAGE}:${VERSION}"
             }
         }
-        stage('Run Docker Container') {
-            steps {
-                sh "docker run -d -p 3000:3000 --name nodejs-app ${DOCKER_IMAGE}:${VERSION}"
-            }
+
         }
         stage('Deploy to Kubernetes') {
             steps {
@@ -32,4 +29,3 @@ pipeline {
             }
         }
     }
-}
