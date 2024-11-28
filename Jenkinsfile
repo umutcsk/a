@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "umutcskn681/node"
         VERSION = "1.${BUILD_NUMBER}"
-        KUBECONFIG = '/home/test/.kube/config'
+        KUBECONFIG = '/tmp/.kube/config'
     }
     stages {
         stage('Build Docker Image') {
