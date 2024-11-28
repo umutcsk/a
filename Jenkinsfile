@@ -17,8 +17,6 @@ pipeline {
                 sh "docker push ${DOCKER_IMAGE}:${VERSION}"
             }
         }
-
-        }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
@@ -29,3 +27,4 @@ pipeline {
             }
         }
     }
+}
