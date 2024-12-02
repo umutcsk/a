@@ -26,7 +26,8 @@ pipeline {
                 script {
                     sh """
                         export KUBECONFIG=${KUBECONFIG} && kubectl apply -f deployment.yaml
-                        export KUBECONFIG=${KUBECONFIG} && kubectl apply -f service.yaml
+                        export KUBECONFIG=${KUBECONFIG} && kubectl apply -f service.yaml    
+                        export KUBECONFIG=${KUBECONFIG} && kubectl set image deployment/nodejs-hello-world nodejs-container=${DOCKER_IMAGE}:${VERSION}
                     """
                 }
             }
