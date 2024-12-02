@@ -10,7 +10,6 @@ pipeline {
             steps {
                 sh """
                     docker build -t ${DOCKER_IMAGE}:${VERSION} .
-                    docker run -d -p 3000:3000 --name nodejs-container ${DOCKER_IMAGE}:${VERSION}
                 """
             }
         }
@@ -28,6 +27,7 @@ pipeline {
                     sh """
                         export KUBECONFIG=${KUBECONFIG} && kubectl apply -f deployment.yaml
                         export KUBECONFIG=${KUBECONFIG} && kubectl apply -f service.yaml
+                        export KUBECONFIG=${KUBECONFIG} &&  
                     """
                 }
             }
