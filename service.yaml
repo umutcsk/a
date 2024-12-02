@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: helloworld-service
+  labels:
+    app: nodejs-hello-world
 spec:
   type: NodePort
   selector:
-    name: nodejs-hello-world
+    app: nodejs-hello-world
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 9376
-      nodePort: 30080  # İsteğe bağlı, belirli bir portu sabitlemek için
+      port: 80        
+      targetPort: 3000  
+      nodePort: 30080   
